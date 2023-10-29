@@ -2389,7 +2389,11 @@ div[data-role="editor-toolbar"] {
 
 }
 
+<<<<<<< HEAD
 }
+=======
+
+>>>>>>> e175da4 (2nd commit)
 
 .panel.panel-default.panel-heading {
 
@@ -3003,7 +3007,11 @@ div[data-role="editor-toolbar"] {
 
 }
 
+<<<<<<< HEAD
 * /Widget-Content */
+=======
+/*Widget-Content */
+>>>>>>> e175da4 (2nd commit)
 
 
 
@@ -3363,7 +3371,11 @@ div[data-role="editor-toolbar"] {
 
 /*-----	map-----*/
 
+<<<<<<< HEAD
 * Google maps */
+=======
+/* Google maps */
+>>>>>>> e175da4 (2nd commit)
 
 
 
@@ -7843,10 +7855,22 @@ ul.amounts li {
 
 }
 
+<<<<<<< HEAD
 
 
 /*carousel*/
 
+=======
+.card-body h3{
+    color: #0e2e42;
+}
+
+/*carousel*/
+.icon-folder{
+    color: #c97b03;
+    font-size: 42px;
+}
+>>>>>>> e175da4 (2nd commit)
 
 
 .carousel-indicators li {

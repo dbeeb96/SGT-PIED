@@ -9,7 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.kindsonthegenius</groupId>
+<<<<<<< HEAD
     <artifactId>fleetapp_v2</artifactId>
+=======
+    <artifactId>SGT-PIED</artifactId>
+>>>>>>> e175da4 (2nd commit)
     <version>0.0.1-SNAPSHOT</version>
     <name>fleetapp_v2</name>
     <description>Fleet App Version 2</description>
