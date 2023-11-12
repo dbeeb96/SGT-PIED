@@ -8,24 +8,20 @@
         <version>2.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.kindsonthegenius</groupId>
-<<<<<<< HEAD
-    <artifactId>fleetapp_v2</artifactId>
-=======
+    <groupId>com.sgtpied</groupId>
     <artifactId>SGT-PIED</artifactId>
->>>>>>> e175da4 (2nd commit)
     <version>0.0.1-SNAPSHOT</version>
-    <name>fleetapp_v2</name>
-    <description>Fleet App Version 2</description>
+    <name>sgt</name>
+    <description>stg pole pied app</description>
     <properties>
         <java.version>8</java.version>
     </properties>
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.h2database</groupId>-->
-<!--            <artifactId>h2</artifactId>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.h2database</groupId>-->
+        <!--            <artifactId>h2</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <!--     <dependency>
            <groupId>org.postgresql</groupId>
@@ -53,21 +49,21 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.thymeleaf.extras</groupId>-->
-<!--            <artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.thymeleaf.extras</groupId>-->
+        <!--            <artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
+        <!--        </dependency>-->
 
-          <dependency><groupId>mysql</groupId>
-          <artifactId>mysql-connector-java</artifactId>
-           <version>8.0.26</version>
-          </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
+        <dependency><groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
         </dependency>
+
+        <!--   <dependency>
+     <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <optional>true</optional>
+      </dependency> -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -84,7 +80,7 @@
             <version>2.5.1</version>
         </dependency>
 
-        <dependency>
+    <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
@@ -105,7 +101,7 @@
                         </exclude>
                     </excludes>
                 </configuration>
-            </plugin>
+            </plugin><plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><configuration><source>8</source><target>8</target></configuration></plugin>
         </plugins>
     </build>
 

@@ -4,49 +4,47 @@
       layout:decorate="_layout">
 
 <body>
-
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Tickets</h3>
+                <h3 class="page-header"><i class="fa fa fa-bars"></i>GESTION DES TACHES</h3>
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="/helpdesk">Helpdesk Home</a></li>
-                    <li><i class="fa fa-square-o"></i>Helpdesk</li>
+                    <li><i class="fa fa-home"></i><a href="/index">Accueil</a></li>
+                    <li><i class="fa fa-bars"></i><a href="/helpdesk">Accueil des taches</a></li>
+                    <li><i class="fa fa-square-o"></i>Taches</li>
                 </ol>
             </div>
         </div>
-    <div class="row">
-        <div class="col-lg-4">
-            <section class="panel">
-                <div class="panel-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><h3><b>Taches</b></h3></h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/helpdesk/tickets" class="btn btn-primary">Manage Tickets</a>
+        <div class="row">
+            <div class="col-lg-4">
+                <section class="panel">
+                    <div class="panel-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><h3><b>Taches</b></h3></h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="/task/addNew" class="btn btn-primary">Ajouter une tache</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
-        <div class="col-lg-4">
-            <section class="panel">
-                <div class="panel-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><h3><b>Status des taches</b></h3></h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/helpdesk/ticketStatuses" class="btn btn-primary">Manage Ticket Status</a>
+                </section>
+            </div>
+            <div class="col-lg-4">
+                <section class="panel">
+                    <div class="panel-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><h3><b>Status des taches</b></h3></h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="/tache/tache/" class="btn btn-primary">Manage Ticket Status</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
-    </div>
     </section>
 </div>
-
 </body>
 </html>
