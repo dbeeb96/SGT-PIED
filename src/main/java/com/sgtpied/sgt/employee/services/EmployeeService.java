@@ -2,8 +2,8 @@ package com.sgtpied.sgt.employee.services;
 
 import com.sgtpied.sgt.employee.models.Employee;
 import com.sgtpied.sgt.employee.repositories.EmployeeRepository;
-import com.sgtpied.sgt.security.models.User;
-import com.sgtpied.sgt.security.repositories.UserRepository;
+import com.sgtpied.sgt.admin.models.User;
+import com.sgtpied.sgt.admin.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.sgtpied.sgt.security.repositories;
+package com.sgtpied.sgt.admin.repositories;
 
-import com.sgtpied.sgt.security.models.User;
+import com.sgtpied.sgt.admin.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

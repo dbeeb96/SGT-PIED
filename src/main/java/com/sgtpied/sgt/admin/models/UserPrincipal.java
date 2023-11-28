@@ -1,7 +1,7 @@
-package com.sgtpied.sgt.security.models;
+package com.sgtpied.sgt.admin.models;
 
-import com.sgtpied.sgt.security.repositories.RoleRepository;
-import com.sgtpied.sgt.security.services.RoleService;
+import com.sgtpied.sgt.admin.repositories.RoleRepository;
+import com.sgtpied.sgt.admin.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

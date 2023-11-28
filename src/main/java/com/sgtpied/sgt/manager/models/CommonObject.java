@@ -2,7 +2,7 @@ package com.sgtpied.sgt.manager.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.sgtpied.sgt.security.models.Auditable;
+import com.sgtpied.sgt.admin.models.Auditable;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

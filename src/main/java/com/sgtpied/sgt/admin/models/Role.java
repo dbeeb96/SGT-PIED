@@ -1,4 +1,4 @@
-package com.sgtpied.sgt.security.models;
+package com.sgtpied.sgt.admin.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

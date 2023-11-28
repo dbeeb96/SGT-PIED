@@ -1,9 +1,9 @@
-package com.sgtpied.sgt.security.services;
+package com.sgtpied.sgt.admin.services;
 
-import com.sgtpied.sgt.security.models.Role;
-import com.sgtpied.sgt.security.models.User;
-import com.sgtpied.sgt.security.repositories.RoleRepository;
-import com.sgtpied.sgt.security.repositories.UserRepository;
+import com.sgtpied.sgt.admin.models.Role;
+import com.sgtpied.sgt.admin.models.User;
+import com.sgtpied.sgt.admin.repositories.RoleRepository;
+import com.sgtpied.sgt.admin.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
