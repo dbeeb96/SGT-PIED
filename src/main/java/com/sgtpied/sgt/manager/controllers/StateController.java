@@ -3,22 +3,24 @@ package com.sgtpied.sgt.manager.controllers;
 import java.util.List;
 
 import com.sgtpied.sgt.manager.models.State;
-import com.sgtpied.sgt.manager.services.CountryService;
 import com.sgtpied.sgt.manager.services.StateService;
+import com.sgtpied.sgt.manager.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class StateController {
 	
-	@Autowired private StateService stateService;
-	@Autowired private CountryService countryService;
+	@Autowired
+	private StateService stateService;
+	@Autowired
+	private TasksService tasksService;
 
 	public  Model addModelAttribute(Model model){
 		model.addAttribute("states", stateService.findAll());
-		model.addAttribute("countries", countryService.findAll());
+		model.addAttribute("tasks", tasksService.findAll());
 		return model;
 	}
 
@@ -30,10 +32,10 @@ public class StateController {
 	}
 
 	//Get States by country id
-	@GetMapping("/parameters/states/country/{countryid}")
+	@GetMapping("/parameters/states/tasks/{tasksid}")
 	@ResponseBody
-	public List<State> findAll(@PathVariable Integer countryid){
-		return stateService.findByCountryid(countryid);
+	public List<State> findAll(@PathVariable Integer tasksid){
+		return stateService.findByTasksid(tasksid);
 	}
 
 	@GetMapping("/parameters/stateAdd")
@@ -46,7 +48,7 @@ public class StateController {
 	public String editState(@PathVariable Integer id, @PathVariable String op, Model model){
 		addModelAttribute(model);
 		model.addAttribute("state", stateService.findById(id));
-		return "/parameters/state" + op;
+		return "/parameters/states" + op;
 	}
 
 	//Add State

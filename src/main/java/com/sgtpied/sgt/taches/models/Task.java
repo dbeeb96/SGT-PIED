@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @Table(name = "tasks")
 public class Task {
 
-
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")

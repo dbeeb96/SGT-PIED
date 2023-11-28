@@ -1,9 +1,9 @@
 package com.sgtpied.sgt.manager.controllers;
 
-import com.sgtpied.sgt.manager.models.Supplier;
+import com.sgtpied.sgt.manager.models.Modules;
 import com.sgtpied.sgt.manager.services.SupplierService;
-import com.sgtpied.sgt.manager.services.CountryService;
 import com.sgtpied.sgt.manager.services.StateService;
+import com.sgtpied.sgt.manager.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class SupplierController {
 
 	@Autowired	private SupplierService supplierService;
-	@Autowired	private CountryService countryService;
+	@Autowired	private TasksService tasksService;
 	@Autowired	private StateService stateService;
 
 	public Model addModelAttributes(Model model){
 		model.addAttribute("suppliers", supplierService.findAll());
-		model.addAttribute("countries", countryService.findAll());
+		model.addAttribute("tasks", tasksService.findAll());
 		model.addAttribute("states", stateService.findAll());
 		return model;
 	}
@@ -31,21 +31,21 @@ public class SupplierController {
 
 	@GetMapping("/parameters/supplierAdd")
 	public String addSupplier(Model model){
-		model.addAttribute("countries", countryService.findAll());
+		model.addAttribute("tasks", tasksService.findAll());
 		return "parameters/supplierAdd";
 	}
 
 	//The op parameter is either Edit or Details
 	@GetMapping("/parameters/supplier/{op}/{id}")
 	public String editSupplier(@PathVariable Integer id, @PathVariable String op, Model model){
-		Supplier supplier = supplierService.findById(id);
+		Modules supplier =	 supplierService.findById(id);
 		model.addAttribute("supplier", supplier);
 		addModelAttributes(model);
 		return "/parameters/supplier"+ op; //returns supplierEdit or supplierDetails
 	}
 
 	@PostMapping("/parameters/suppliers")
-	public String save(Supplier supplier) {
+	public String save(Modules supplier) {
 		supplierService.save(supplier);
 		return "redirect:/parameters/suppliers";
 	}

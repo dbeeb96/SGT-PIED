@@ -24,8 +24,8 @@ public class StateService {
 	}
 
 	//Get State By Country id
-	public List<State > findByCountryid(int countryid) {
-		return stateRepository.getAllByCountryid(countryid);
+	public List<State > findByTasksid(int tasksid) {
+		return stateRepository.getAllByTasksid(tasksid);
 	}
 
 	//Delete State

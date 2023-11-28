@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface StateRepository extends JpaRepository<State, Integer> {
 
-    public List<State> getAllByCountryid(Integer countryid);
+    public List<State> getAllByTasksid(Integer countryid);
 
 }

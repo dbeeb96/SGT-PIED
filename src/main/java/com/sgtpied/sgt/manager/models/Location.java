@@ -24,9 +24,9 @@ public class Location {
 	private String details;
 	
 	@ManyToOne
-	@JoinColumn(name="countryid", insertable=false, updatable=false)
-	private Country country;
-	private Integer countryid;
+	@JoinColumn(name="tasksid", insertable=false, updatable=false)
+	private Tasks tasks;
+	private Integer tasksid;
 	
 	@ManyToOne
 	@JoinColumn(name="stateid", insertable=false, updatable=false)

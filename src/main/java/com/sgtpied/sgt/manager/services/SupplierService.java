@@ -1,7 +1,7 @@
 package com.sgtpied.sgt.manager.services;
 
-import com.sgtpied.sgt.manager.models.Supplier;
-import com.sgtpied.sgt.manager.repositories.SupplierRepository;
+import com.sgtpied.sgt.manager.models.Modules;
+import com.sgtpied.sgt.manager.repositories.ModulesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,26 +10,26 @@ import java.util.List;
 @Service
 public class SupplierService {
 	@Autowired
-	private SupplierRepository supplierRepository;
+	private ModulesRepository modulesRepository;
 	
 	//Get All Suppliers
-	public List<Supplier> findAll(){
-		return supplierRepository.findAll();
+	public List<Modules> findAll(){
+		return modulesRepository.findAll();
 	}	
 	
 	//Get Supplier By Id
-	public Supplier findById(int id) {
-		return supplierRepository.findById(id).orElse(null);
+	public Modules findById(int id) {
+		return modulesRepository.findById(id).orElse(null);
 	}	
 	
 	//Delete Supplier
 	public void deleteById(int id) {
-		supplierRepository.deleteById(id);
+		modulesRepository.deleteById(id);
 	}
 	
 	//Update Supplier
-	public void save(Supplier supplier) {
-		supplierRepository.save(supplier);
+	public void save(Modules supplier) {
+		modulesRepository.save(supplier);
 	}
 
 }

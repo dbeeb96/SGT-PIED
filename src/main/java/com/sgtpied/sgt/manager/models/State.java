@@ -23,10 +23,10 @@ public class State {
     private String code;
 
 	@ManyToOne
-	@JoinColumn(name="countryid", insertable=false, updatable=false)
-	private Country country;
+	@JoinColumn(name="tasksid", insertable=false, updatable=false)
+	private Tasks tasks;
 	
-	private Integer countryid;
+	private Integer tasksid;
 	
 	private String details;
 	

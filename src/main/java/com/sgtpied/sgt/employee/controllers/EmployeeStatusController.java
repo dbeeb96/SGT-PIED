@@ -19,7 +19,7 @@ public class EmployeeStatusController {
     public String parameters(Model model){
         List<EmployeeStatus> employeeStatuses = employeeStatusService.findAll();
         model.addAttribute("employeeStatuses", employeeStatuses);
-        return "hr/employeeStatuses";
+        return "employee/employeeStatuses";
     }
 
     //Get Job Title by id
@@ -32,13 +32,13 @@ public class EmployeeStatusController {
     @PostMapping("/hr/employeeStatuses")
     public String save(EmployeeStatus employeeStatus){
         employeeStatusService.save(employeeStatus);
-        return "redirect:/hr/employeeStatuses";
+        return "redirect:/employee/employeeStatuses";
     }
 
     @RequestMapping(value="/hr/employeeStatus/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(@PathVariable Integer id) {
         employeeStatusService.delete(id);
-        return "redirect:/hr/employeeStatuses";
+        return "redirect:/employee/employeeStatuses";
     }
     
 }

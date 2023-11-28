@@ -16,7 +16,7 @@ public class ApplicationController {
     }
     @GetMapping("hr")
     public String manager(){
-        return "/manager/index";
+        return "/employee/index";
     }
 
     @GetMapping("fleet")
@@ -47,4 +47,10 @@ public class ApplicationController {
     public String security(){
         return "/security/index";
     }
+
+    @GetMapping("calandar")
+    public  String calandar(){
+           return  "/calandar/calendar";
+        }
+
 }

@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, String> {
 
-
     Long countTasksByStatus(TaskStatus status);
 
     @Transactional

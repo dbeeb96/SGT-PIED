@@ -9,8 +9,9 @@ import com.sgtpied.sgt.employee.models.Employee;
 import com.sgtpied.sgt.employee.services.EmployeeService;
 import com.sgtpied.sgt.employee.services.EmployeeTypeService;
 import com.sgtpied.sgt.employee.services.JobTitleService;
-import com.sgtpied.sgt.manager.services.CountryService;
+import com.sgtpied.sgt.manager.models.Tasks;
 import com.sgtpied.sgt.manager.services.StateService;
+import com.sgtpied.sgt.manager.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,7 +28,7 @@ public class EmployeeController {
 	@Autowired private StateService stateService;
 	@Autowired private JobTitleService jobTitleService;
 	@Autowired private EmployeeTypeService employeeTypeService;
-	@Autowired private CountryService countryService;
+	@Autowired private TasksService countryService;
 
 	public Model addModelAttributes(Model model){
 		model.addAttribute("countries", countryService.findAll());
@@ -42,13 +43,13 @@ public class EmployeeController {
 	@GetMapping("hr/employees")
 	public String findAll(Model model){
 		addModelAttributes(model);
-		return "/hr/employees";
+		return "/employee/employees";
 	}	
 
 	@GetMapping("/hr/employeeAdd")
 	public String addEmployee(Model model){
 		addModelAttributes(model);
-		return "/hr/employeeAdd";
+		return "/employee/employeeAdd";
 	}
 
 	//The op parameter is either Edit or Details
@@ -57,20 +58,20 @@ public class EmployeeController {
 		Employee employee = employeeService.findById(id);
 		model.addAttribute("employee", employee);
 		addModelAttributes(model);
-		return "/hr/employee"+ op; //returns employeeEdit or employeeDetails
+		return "/employee/employee"+ op; //returns employeeEdit or employeeDetails
 	}
 
 	//Add Employee
 	@PostMapping("/hr/employees")
 	public String addNew(Employee employee) {
 		employeeService.save(employee);
-		return "redirect:/hr/employees";
+		return "redirect:/employee/employees";
 	}	
 
 	@RequestMapping(value="/hr/employee/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(@PathVariable Integer id) {
 		employeeService.delete(id);
-		return "redirect:/hr/employees";
+		return "redirect:/employee/employees";
 	}	
 
 	@RequestMapping(value="/employees/uploadPhoto", method=RequestMethod.POST, consumes=MediaType.MULTIPART_FORM_DATA_VALUE)

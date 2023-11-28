@@ -1,7 +1,6 @@
 package com.sgtpied.sgt.employee.models;
-
-import com.sgtpied.sgt.manager.models.Country;
 import com.sgtpied.sgt.manager.models.State;
+import com.sgtpied.sgt.manager.models.Tasks;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +34,7 @@ public class Person {
 	
 	@ManyToOne
 	@JoinColumn(name="countryid", insertable=false, updatable=false)
-	private Country country;
+	private Tasks tasks;
 	private Integer countryid;
 	
 	@ManyToOne

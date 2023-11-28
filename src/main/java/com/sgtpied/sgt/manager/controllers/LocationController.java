@@ -1,9 +1,10 @@
 package com.sgtpied.sgt.manager.controllers;
 
 import com.sgtpied.sgt.manager.models.Location;
-import com.sgtpied.sgt.manager.services.CountryService;
+import com.sgtpied.sgt.manager.models.Tasks;
 import com.sgtpied.sgt.manager.services.LocationService;
 import com.sgtpied.sgt.manager.services.StateService;
+import com.sgtpied.sgt.manager.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LocationController {
 	
 	@Autowired	private LocationService locationService;
-	@Autowired	private CountryService countryService;
+	@Autowired	private TasksService tasksService;
 	@Autowired	private StateService stateService;
 
 	public Model addModelAttributes(Model model){
 		model.addAttribute("locations", locationService.findAll());
-		model.addAttribute("countries", countryService.findAll());
+		model.addAttribute("tasks", tasksService.findAll());
 		model.addAttribute("states", stateService.findAll());
 		return model;
 	}
@@ -35,7 +36,7 @@ public class LocationController {
 
 	@GetMapping("/parameters/locationAdd")
 	public String addLocation(Model model){
-		model.addAttribute("countries", countryService.findAll());
+		model.addAttribute("tasks", tasksService.findAll());
 		return "parameters/locationAdd";
 	}
 
