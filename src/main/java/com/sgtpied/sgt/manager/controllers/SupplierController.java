@@ -3,7 +3,7 @@ package com.sgtpied.sgt.manager.controllers;
 import com.sgtpied.sgt.manager.models.Modules;
 import com.sgtpied.sgt.manager.services.SupplierService;
 import com.sgtpied.sgt.manager.services.StateService;
-import com.sgtpied.sgt.manager.services.TasksService;
+//import com.sgtpied.sgt.manager.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class SupplierController {
 
 	@Autowired	private SupplierService supplierService;
-	@Autowired	private TasksService tasksService;
+	//@Autowired	private TasksService tasksService;
 	@Autowired	private StateService stateService;
 
 	public Model addModelAttributes(Model model){
 		model.addAttribute("suppliers", supplierService.findAll());
-		model.addAttribute("tasks", tasksService.findAll());
+		//model.addAttribute("tasks", tasksService.findAll());
 		model.addAttribute("states", stateService.findAll());
 		return model;
 	}
@@ -31,7 +31,7 @@ public class SupplierController {
 
 	@GetMapping("/parameters/supplierAdd")
 	public String addSupplier(Model model){
-		model.addAttribute("tasks", tasksService.findAll());
+		//model.addAttribute("tasks", tasksService.findAll());
 		return "parameters/supplierAdd";
 	}
 

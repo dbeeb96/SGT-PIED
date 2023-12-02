@@ -9,9 +9,9 @@ import com.sgtpied.sgt.employee.models.Employee;
 import com.sgtpied.sgt.employee.services.EmployeeService;
 import com.sgtpied.sgt.employee.services.EmployeeTypeService;
 import com.sgtpied.sgt.employee.services.JobTitleService;
-import com.sgtpied.sgt.manager.models.Tasks;
+//import com.sgtpied.sgt.manager.models.Tasks;
 import com.sgtpied.sgt.manager.services.StateService;
-import com.sgtpied.sgt.manager.services.TasksService;
+//import com.sgtpied.sgt.manager.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,10 +28,10 @@ public class EmployeeController {
 	@Autowired private StateService stateService;
 	@Autowired private JobTitleService jobTitleService;
 	@Autowired private EmployeeTypeService employeeTypeService;
-	@Autowired private TasksService countryService;
+	//@Autowired private TasksService countryService;
 
 	public Model addModelAttributes(Model model){
-		model.addAttribute("countries", countryService.findAll());
+		//model.addAttribute("countries", countryService.findAll());
 		model.addAttribute("states", stateService.findAll());
 		model.addAttribute("employees", employeeService.findAll());
 		model.addAttribute("jobTitles", jobTitleService.findAll());

@@ -33,15 +33,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		.antMatchers("/login", "/resources/**", "/css/**", "/fonts/**", "/img/**").permitAll()
 	    .antMatchers("/register", "/resources/**", "/css/**", "/fonts/**", "/img/**", "/js/**").permitAll()
-		.antMatchers("/employee/profile").hasAuthority("ADMIN")
+		//.antMatchers("/employee/profile").hasAuthority("ADMIN")
 		.antMatchers("/employee/profile").hasAuthority("MANAGER")
 		.antMatchers("/employee/profile").hasAuthority("MANAGER")
 				.antMatchers("/users/addNew").permitAll()
-				.antMatchers("/security/user/Edit/**").hasAuthority("ADMIN")
+				//.antMatchers("/security/user/Edit/**").hasAuthority("ADMIN")
 				.antMatchers("/users/addNew").permitAll()
-				.antMatchers("/hr/**").hasAnyAuthority("EMPLOYEE", "ADMIN") // Allow access to EMPLOYEE section
-				.antMatchers("/parameters/**").hasAnyAuthority("MANAGER","ADMIN") // Allow access to MANAGER section
-				.antMatchers("/security/**").hasAnyAuthority("ADMIN") // Allow access to ADMIN section
+				//.antMatchers("/hr/**").hasAnyAuthority("EMPLOYEE", "ADMIN") // Allow access to EMPLOYEE section
+				//.antMatchers("/parameters/**").hasAnyAuthority("MANAGER","ADMIN") // Allow access to MANAGER section
+				//.antMatchers("/security/**").hasAnyAuthority("ADMIN") // Allow access to ADMIN section
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()

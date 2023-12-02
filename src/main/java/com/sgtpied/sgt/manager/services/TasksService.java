@@ -2,6 +2,7 @@ package com.sgtpied.sgt.manager.services;
 
 import com.sgtpied.sgt.manager.models.Tasks;
 import com.sgtpied.sgt.manager.repositories.TasksRepository;
+import com.sgtpied.sgt.taches.models.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -56,4 +57,5 @@ public class TasksService {
         Pageable pageable = PageRequest.of(pageNumber - 1,5, sort);
         return TasksRepository.findAll(pageable);
     }
+
 }

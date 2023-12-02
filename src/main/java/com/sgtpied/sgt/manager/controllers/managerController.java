@@ -3,7 +3,7 @@ package com.sgtpied.sgt.manager.controllers;
 import com.sgtpied.sgt.manager.models.TaskStatus;
 import com.sgtpied.sgt.manager.services.ManagerService;
 import com.sgtpied.sgt.manager.services.StateService;
-import com.sgtpied.sgt.manager.services.TasksService;
+//import com.sgtpied.sgt.manager.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class managerController {
 
 	@Autowired	private ManagerService managerService;
-	@Autowired	private TasksService countryService;
+	//@Autowired	private TasksService countryService;
 	@Autowired	private StateService stateService;
 
 	public Model addModelAttributes(Model model){
 		model.addAttribute("clients", managerService.findAll());
-		model.addAttribute("tasks", countryService.findAll());
+		//model.addAttribute("tasks", countryService.findAll());
 		model.addAttribute("states", stateService.findAll());
 		return model;
 	}
@@ -31,7 +31,7 @@ public class managerController {
 
 	@GetMapping("/parameters/clientAdd")
 	public String addClient(Model model){
-		model.addAttribute("countries", countryService.findAll());
+		//model.addAttribute("countries", countryService.findAll());
 		return "parameters/clientAdd";
 	}
 	//The op parameter is either Edit or Details

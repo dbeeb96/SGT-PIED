@@ -10,7 +10,7 @@ public class ApplicationController {
     public String goHome(){
         return "index";
     }
-    @GetMapping("tasks")
+    @GetMapping("taches")
     public String taches(){
         return "/taches/index";
     }
@@ -48,9 +48,8 @@ public class ApplicationController {
         return "/security/index";
     }
 
-    @GetMapping("calandar")
-    public  String calandar(){
-           return  "/calandar/calendar";
-        }
-
+    @GetMapping("/fullCalendar")
+    public String showFullCalendar() {
+        return "calandar/fullCalendar"; // This maps to the fullCalendar.html template
+    }
 }

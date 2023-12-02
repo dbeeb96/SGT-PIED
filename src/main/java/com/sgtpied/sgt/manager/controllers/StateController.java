@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sgtpied.sgt.manager.models.State;
 import com.sgtpied.sgt.manager.services.StateService;
+//import com.sgtpied.sgt.manager.services.TasksService;
 import com.sgtpied.sgt.manager.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ public class StateController {
 
 	public  Model addModelAttribute(Model model){
 		model.addAttribute("states", stateService.findAll());
-		model.addAttribute("tasks", tasksService.findAll());
+		//model.addAttribute("tasks", tasksService.findAll());
 		return model;
 	}
 

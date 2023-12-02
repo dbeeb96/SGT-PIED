@@ -15,7 +15,7 @@ public class TasksController {
     @Autowired
     private TasksService tasksService;
 
-    @GetMapping("/parameters/tasks")
+   /* @GetMapping("/parameters/tasks")
     public String getAllPages(Model model){
         return getOnePage(model, 1);
     }
@@ -32,16 +32,16 @@ public class TasksController {
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("tasks", tasks);
 
-        return "/parameters/tasks";
-    }
+        return null;
+    } */
 
-//    @GetMapping("/parameters/countries")
-//    public String getAll(Model model, String keyword){
-//        List<Tasks> countries;
-//        countries = (keyword == null) ? tasksService.findAll():  tasksService.findByKeyword(keyword);
-//        model.addAttribute("countries", countries);
-//        return "/parameters/countries";
-//    }
+  @GetMapping("/parameters/tasks")
+    public String getAll(Model model, String keyword){
+       List<Tasks> tasks;
+        tasks = (keyword == null) ? tasksService.findAll():  tasksService.findByKeyword(keyword);
+       model.addAttribute("tasks", tasks);
+       return "/parameters/states";
+   }
 
 //    @GetMapping("/parameters/countries/{field}")
 //    public String getAllWithSort(Model model, @PathVariable String field, @PathParam("sortDir") String sortDir){
