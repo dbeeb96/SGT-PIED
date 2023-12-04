@@ -1,5 +1,5 @@
 package com.sgtpied.sgt.taches.controllers;
-
+import  com.sgtpied.sgt.admin.models.Role;
 import com.sgtpied.sgt.admin.models.User;
 import com.sgtpied.sgt.admin.services.UserService;
 import com.sgtpied.sgt.taches.models.Task;
@@ -7,13 +7,16 @@ import com.sgtpied.sgt.taches.models.TaskStatus;
 import com.sgtpied.sgt.taches.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class TaskController {
@@ -25,29 +28,37 @@ public class TaskController {
     private UserService userService;
 
     @GetMapping("/taches/tasks")
+
     public String getAllTasks(Model model, Principal principal) {
         List<Task> tasks;
-
         // Get the currently authenticated user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        User currentUser = userService.getUserByUsername(username);
+        User currentUser = userService.getUserByUsername(username); // Declare and initialize currentUser
 
-        // Check if the user has either "EMPLOYEE" or "ADMIN" role
-        if (currentUser.getRoles().stream().anyMatch(role -> role.getName().equals("EMPLOYEE") || role.getName().equals("ADMIN"))) {
-            // User has "EMPLOYEE" or "ADMIN" role, get tasks by assigned user
-           tasks = taskService.getTasksByAssignedUser(currentUser);
+        // Log the roles for debugging
+        List<String> roles = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+        System.out.println("User Roles: " + roles);
+
+        // Check if the user has "EMPLOYEE" role
+        if (roles.contains("EMPLOYEE")) {
+            // User has "EMPLOYEE" role, get tasks by assigned user
+            tasks = taskService.getTasksByAssignedUser(currentUser);
         } else {
-            // User doesn't have "EMPLOYEE" or "ADMIN" role, get all tasks
+            // User has "ADMIN" or "MANAGER" role, get all tasks
             tasks = taskService.getAllTasks();
         }
+
         // Populate the users attribute
         model.addAttribute("users", userService.getAllUsers());
-
         model.addAttribute("tasks", tasks);
         model.addAttribute("newTask", new Task());
         return "/taches/tasks";
     }
+
+
 
     @GetMapping("/status/{status}")
     public List<Task> getTasksByStatus(@PathVariable TaskStatus status) {

@@ -3,6 +3,7 @@ package com.sgtpied.sgt.admin.services;
 import com.sgtpied.sgt.admin.models.User;
 import com.sgtpied.sgt.admin.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -47,4 +48,5 @@ public class UserService {
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
+
 }

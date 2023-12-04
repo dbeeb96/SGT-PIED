@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -413,57 +414,89 @@
                     </ol>
                 </div>
             </div>
-            <!-- La liste des taches -->
-            <h1>Formulaire d'ajout de taches</h1>
 
             <!-- Form for adding tasks using Bootstrap styling -->
-            <form th:action="@{/taches/tasks}" th:object="${newTask}" method="post">
-                <div class="form-row">
-                    <div class="col-md-3 mb-3">
-                        <label for="title">Titre:</label>
-                        <input type="text" class="form-control" id="title" th:field="*{title}" required/>
+            <!-- Button to trigger the modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">
+                Ajouter une tache
+            </button>
+
+            <!-- Modal for adding a new task -->
+            <div class="modal" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl align-items-center"  role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addTaskModalLabel">Ajouter une tache</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <!-- Render the "Ajouter une tache" button only if the user has roles other than EMPLOYEE -->
+                        <button th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'', ''MANAGER'')')}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">
+                            Ajouter une tache
+                        </button>
+
+
+                        <div class="modal-body">
+                            <!-- Form for adding tasks -->
+                            <form th:action="@{/taches/tasks}" th:object="${newTask}" method="post">
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="title">Titre:</label>
+                                        <input type="text" class="form-control" id="title" th:field="*{title}" required/>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="description">Description:</label>
+                                        <input type="text" class="form-control" id="description" th:field="*{description}" required/>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="status">Status:</label>
+                                        <select class="form-control" id="status" th:field="*{status}" required>
+                                            <option value="TODO">À FAIRE</option>
+                                            <option value="IN_PROGRESS">EN COURS</option>
+                                            <option value="DONE">TERMINÉE</option>
+                                            <option value="ISSUE">ISSUE</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="startDate">Date de début:</label>
+                                        <input type="date" class="form-control" id="startDate" th:field="*{startDate}" required/>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="endDate">Date de fin:</label>
+                                        <input type="date" class="form-control" id="endDate" th:field="*{endDate}" required/>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="assignedUser">Assigné à:</label>
+                                        <select class="form-control" id="assignedUser" th:field="*{assignedUser.id}">
+                                            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.lastname + ' ' + user.firstname}"></option>
+                                        </select>
+                                    </div>
+                                    <!-- Hidden field for assignedUserId -->
+                                    <input type="hidden" id="hiddenAssignedUserId" name="assignedUserId" />
+
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary">Ajouter une tache</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="description">Description:</label>
-                        <input type="text" class="form-control" id="description" th:field="*{description}" required/>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                        <label for="status">Status:</label>
-                        <select class="form-control" id="status" th:field="*{status}" required>
-                            <option value="TODO">À FAIRE</option>
-                            <option value="IN_PROGRESS">EN COURS</option>
-                            <option value="DONE">TERMINÉE</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                        <label for="startDate">Date de début:</label>
-                        <input type="date" class="form-control" id="startDate" th:field="*{startDate}" required/>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                        <label for="endDate">Date de fin:</label>
-                        <input type="date" class="form-control" id="endDate" th:field="*{endDate}" required/>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                        <label for="assignedUser">Assigné à:</label>
-                        <select class="form-control" id="assignedUser" th:field="*{assignedUser.id}">
-                            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.lastname + ' ' + user.firstname}"></option>
-                        </select>
-                    </div>
-                    <!-- Hidden field for assignedUserId -->
-                    <input type="hidden" id="hiddenAssignedUserId" name="assignedUserId" />
-                    <!-- Example HTML form field for assignedUserId -->
-                    <button type="submit" class="btn btn-primary">Ajouter une tache</button>
                 </div>
+            </div>
 
-                <script>
-                    // Add a script to handle user selection and set the hidden input
-                    document.getElementById('assignedUser').addEventListener('change', function() {
-                        var selectedUserId = this.value;
-                        document.getElementById('hiddenAssignedUserId').value = selectedUserId;
-                    });
-                </script>
+            <!-- Your existing code for displaying tasks -->
 
-            </form>
+            <!-- JavaScript code to handle user selection and set the hidden input -->
+            <script>
+                document.getElementById('assignedUser').addEventListener('change', function() {
+                    var selectedUserId = this.value;
+                    document.getElementById('hiddenAssignedUserId').value = selectedUserId;
+                });
+            </script>
+
 
             <hr/>
 
@@ -601,6 +634,11 @@
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 
