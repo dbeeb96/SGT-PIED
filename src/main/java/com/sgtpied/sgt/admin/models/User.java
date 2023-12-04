@@ -1,9 +1,11 @@
 package com.sgtpied.sgt.admin.models;
 
+import com.sgtpied.sgt.taches.models.Task;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,5 +29,8 @@ public class User extends Auditable<String> {
             inverseJoinColumns = { @JoinColumn(name = "role_id") }
     )
     Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "assignedUser", cascade = CascadeType.ALL)
+    private List<Task> assignedTasks;
 
 }

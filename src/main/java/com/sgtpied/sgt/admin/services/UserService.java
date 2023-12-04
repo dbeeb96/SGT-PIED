@@ -20,15 +20,16 @@ public class UserService {
 	//Get All Users
 	public List<User> findAll(){
 		return userRepository.findAll();
-	}	
-	
+	}
+	public User getUserByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 	//Get User By Id
 	public User findById(int id) {
 		return userRepository.findById(id).orElse(null);
-	}	
-	
+	}
 
-	
+
 	//Update User
 	public void save(User user) {
 		user.setPassword(encoder.encode(user.getPassword()));
@@ -38,5 +39,12 @@ public class UserService {
 	public void deleteById(Integer id) {
 		userRepository.deleteById(id);
 
+	}
+
+	public User getUserById(Integer userId) {
+		return userRepository.findById(userId).orElse(null);
+	}
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
 	}
 }

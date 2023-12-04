@@ -1,5 +1,6 @@
 package com.sgtpied.sgt.taches.models;
 
+import com.sgtpied.sgt.admin.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,10 @@ public class Task {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
 
-    // getters and setters
+    @ManyToOne
+    @JoinColumn(name = "assigned_user_id")
+    private User assignedUser;
+
+
 }
 

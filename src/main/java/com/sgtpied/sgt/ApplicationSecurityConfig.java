@@ -20,7 +20,7 @@ import static org.hibernate.criterion.Restrictions.and;
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
-	
+
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -29,35 +29,34 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		.csrf().disable()
-		.authorizeRequests()
-		.antMatchers("/login", "/resources/**", "/css/**", "/fonts/**", "/img/**").permitAll()
-	    .antMatchers("/register", "/resources/**", "/css/**", "/fonts/**", "/img/**", "/js/**").permitAll()
-		//.antMatchers("/employee/profile").hasAuthority("ADMIN")
-		.antMatchers("/employee/profile").hasAuthority("MANAGER")
-		.antMatchers("/employee/profile").hasAuthority("MANAGER")
-				.antMatchers("/users/addNew").permitAll()
+				.csrf().disable()
+				.authorizeRequests()
+				.antMatchers("/login", "/resources/**", "/css/**", "/fonts/**", "/img/**").permitAll()
+				.antMatchers("/register", "/resources/**", "/css/**", "/fonts/**", "/img/**", "/js/**").permitAll()
+				.antMatchers("/employee/profile").hasAnyAuthority("ADMIN","EMPLOYEE","MANAGER")
+				//.antMatchers("/users/addNew").permitAll()
+
+				//.antMatchers("/taches/tasks").hasAnyAuthority("EMPLOYEE", "ADMIN")
 				//.antMatchers("/security/user/Edit/**").hasAuthority("ADMIN")
-				.antMatchers("/users/addNew").permitAll()
-				//.antMatchers("/hr/**").hasAnyAuthority("EMPLOYEE", "ADMIN") // Allow access to EMPLOYEE section
-				//.antMatchers("/parameters/**").hasAnyAuthority("MANAGER","ADMIN") // Allow access to MANAGER section
+				.antMatchers("/hr/**").hasAnyAuthority("EMPLOYEE", "ADMIN") // Allow access to EMPLOYEE section
+				.antMatchers("/parameters/**").hasAnyAuthority("MANAGER","ADMIN") // Allow access to MANAGER section
 				//.antMatchers("/security/**").hasAnyAuthority("ADMIN") // Allow access to ADMIN section
-		.anyRequest().authenticated()
-		.and()
-		.formLogin()
-		.loginPage("/login").permitAll()
-		.defaultSuccessUrl("/index")
-		.and()
-		.logout().invalidateHttpSession(true)
-		.clearAuthentication(true)
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/login").permitAll()
-	.and()
-	.exceptionHandling().accessDeniedPage("/accessDenied")
-	.and()
-	.rememberMe();
+				.anyRequest().authenticated()
+				.and()
+				.formLogin()
+				.loginPage("/login").permitAll()
+				.defaultSuccessUrl("/index")
+				.and()
+				.logout().invalidateHttpSession(true)
+				.clearAuthentication(true)
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/login").permitAll()
+				.and()
+				.exceptionHandling().accessDeniedPage("/accessDenied")
+				.and()
+				.rememberMe();
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
@@ -65,13 +64,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-		
+
 		provider.setUserDetailsService(userDetailsService);
-		
+
 		provider.setPasswordEncoder(bCryptPasswordEncoder());
 		return provider;
 	}

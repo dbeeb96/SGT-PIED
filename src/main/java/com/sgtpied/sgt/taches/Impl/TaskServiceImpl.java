@@ -1,5 +1,6 @@
 package com.sgtpied.sgt.taches.Impl;
 
+import com.sgtpied.sgt.admin.models.User;
 import com.sgtpied.sgt.taches.models.Task;
 import com.sgtpied.sgt.taches.models.TaskStatus;
 import com.sgtpied.sgt.taches.repositories.TaskRepository;
@@ -15,6 +16,7 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
+
     @Override
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
@@ -24,7 +26,10 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> getTasksByStatus(TaskStatus status) {
         return taskRepository.findByStatus(status);
     }
-
+   @Override
+    public List<Task> getTasksByAssignedUser(User user) {
+        return taskRepository.findByAssignedUser(user);
+    }
     @Override
     public Task saveTask(Task task) {
         return taskRepository.save(task);
