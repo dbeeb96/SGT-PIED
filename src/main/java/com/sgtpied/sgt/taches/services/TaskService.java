@@ -14,4 +14,8 @@ public interface TaskService {
     Task saveTask(Task task);
     void deleteTask(Long id);
     void updateTask(Long id, Task updatedTask);
+
+    List<Task> getTasksByStatusAndAssignedUser(TaskStatus status, User assignedUser);
+
+
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,10 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Include Sortable.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.css">
     <title>SGT-PIED</title>
 
     <!-- Bootstrap CSS -->
@@ -319,7 +324,7 @@
                 <li class="active">
                     <a class="" href="/index">
                         <i class="icon_house_alt"></i>
-                        <span>Tableau de bord</span>
+                            <span>Tableau de bord</span>
                     </a>
                 </li>
                 <li class="sub-menu">
@@ -415,12 +420,11 @@
               Licensing information: https://bootstrapmade.com/license/
               Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
             -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
     </div>
+
 </section>
 <!--main content end-->
-</section>
 <!-- container section start -->
 
 <!-- javascripts -->
@@ -513,6 +517,14 @@
 
 <th:block layout:fragment="script"></th:block>
 
+
+
 </body>
+
+    <footer>
+        <section class="text-center">
+            Copyright © <a href="https://www.unchk.sn/">UN-CHK</a>2023
+        </section>
+    </footer>
 
 </html>

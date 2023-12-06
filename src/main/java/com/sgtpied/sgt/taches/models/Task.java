@@ -21,7 +21,9 @@ public class Task {
     private Long id;
     private String title;
     private String description;
+
     private TaskStatus status;  // Enum representing task status
+
     private boolean completed;
 
 
@@ -33,6 +35,7 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "assigned_user_id")
     private User assignedUser;
+
 
 
 }

@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <body>
 <!--main content start-->
@@ -9,13 +10,21 @@
     <section class="wrapper">
         <!--overview start-->
         <div class="row">
+
             <div class="col-lg-12">
                 <h3 class="page-header"><i class="fa fa-laptop"></i><b style="color: #059e1f">Tableau de bord de suivi des taches Pole PIED</b></h3>
+                <div>
+
+                    <!-- Your Dashboard Content Goes Here -->
+
+
+                </div>
                 <ol class="breadcrumb">
                     <li><i class="fa fa-home"></i><a href="index.html">Accueil</a></li>
                     <li><i class="fa fa-laptop"></i>Tableau de bord</li>
                 </ol>
             </div>
+
         </div>
 
         <div class="row">
@@ -107,8 +116,33 @@
 
     </section>
 </div>
+<script>
+    // Function to update the progress bar for 15 minutes
+    function updateProgressBar() {
+        const progressBar = document.getElementById('progress-bar');
+        let width = 0;
 
-<!--main content end-->
+        // Update the progress bar every second for 15 minutes
+        const intervalId = setInterval(() => {
+            if (width >= 100) {
+                clearInterval(intervalId);
+            } else {
+                width += 1;
+                progressBar.style.width = width + '%';
+                progressBar.setAttribute('aria-valuenow', width);
+            }
+        }, 900); // 900 milliseconds = 0.9 seconds
+
+        // Stop the progress bar after 15 minutes
+        setTimeout(() => {
+            clearInterval(intervalId);
+        }, 900 * 60 * 15); // 15 minutes
+    }
+
+    // Start updating the progress bar
+    updateProgressBar();
+</script>
+
 </body>
 
 </html>

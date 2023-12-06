@@ -59,4 +59,12 @@ public class TaskServiceImpl implements TaskService {
         // Save the updated task back to the database
         taskRepository.save(existingTask);
     }
+
+    @Override
+    public List<Task> getTasksByStatusAndAssignedUser(TaskStatus status, User assignedUser) {
+        // You'll need to implement this method based on your data access logic.
+        // It might involve calling a repository or using a query to fetch tasks
+        // that match both the given status and assigned user.
+        return taskRepository.findByStatusAndAssignedUser(status, assignedUser);
+    }
 }

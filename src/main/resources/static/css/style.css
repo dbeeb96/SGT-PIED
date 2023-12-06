@@ -24,8 +24,24 @@ body {
 
     margin: 0px !important;
 
-    font-size:14px !important;
+    font-size:17px !important;
 
+    font-family: "Lato", sans-serif;
+
+}
+
+.wrapper {
+    flex: 1;
+}
+
+
+footer {
+    background-color: #f8f9fa; /* Set background color */
+    padding: 10px; /* Add padding as needed */
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 h1,h2,h3,h4,h5{
@@ -516,6 +532,8 @@ table tr th { color: #688a7e;}
     position: fixed;
 
     background: #1a1e25;
+
+    z-index: 2;
 
 }
 

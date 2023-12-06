@@ -14,10 +14,13 @@ public class ApplicationController {
     public String taches(){
         return "/taches/index";
     }
+
+
+    /*
     @GetMapping("taches/taskStatus")
     public String taskStatus(){
         return "/taches/taskStatus";
-    }
+    } */
     @GetMapping("hr")
     public String manager(){
         return "/employee/index";
