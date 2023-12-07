@@ -177,10 +177,11 @@
                         </a>
 
                         <!-- button faire la tache  -->
-                        <button class="btn btn-default"
-                           th:if="${#authorization.expression('hasAnyAuthority(''EMPLOYEE'')')}">
+                        <a class="btn btn-default"
+                           href="/taches/taskStatus"
+                           th:if="${#authorization.expression('hasAuthority(''EMPLOYEE'')')}">
                             <i class="fa fa-pencil"></i>Faire la tâche
-                        </button>
+                        </a>
 
 
                     </td>

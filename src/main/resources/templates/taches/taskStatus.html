@@ -2,7 +2,6 @@
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout">
 
 <body>
-
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
@@ -16,16 +15,27 @@
             </div>
         </div>
         <div class="container">
+            <!--Style -->
 
+              <style>
+                  .card-1{
+                     background: none;
+                  }
+                  .card-title{
+                      margin-top: 12px;
+                  }
+              </style>
+
+            <!--- fin du style  ---->
             <!-- TaskStatus.html -->
             <section class="panel">
                 <!-- Container for task status columns and rows -->
                 <div class="container mt-4">
 
                     <!-- Status columns for drag-and-drop using Bootstrap grid system -->
-                    <div class="row">
+                    <div class="row" style="background-color: #0e2e42 !important;">
                         <div class="col-md-3">
-                            <div class="card">
+                            <div class="card card-1">
                                 <div class="card-header bg-primary text-white">
                                     <h5 class="card-title">À FAIRE</h5>
                                 </div>
@@ -51,8 +61,8 @@
                         </div>
 
                         <!-- Repeat similar structure for other status columns and rows -->
-                        <div class="col-md-3">
-                            <div class="card">
+                        <div class="col-md-3 ">
+                            <div class="card card-1">
                                 <div class="card-header bg-warning">
                                     <h5 class="card-title">EN COURS</h5>
                                 </div>
@@ -73,8 +83,8 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="card">
+                        <div class="col-md-3 ">
+                            <div class="card card-1">
                                 <div class="card-header bg-success text-white">
                                     <h5 class="card-title">TERMINÉE</h5>
                                 </div>
@@ -96,7 +106,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <div class="card">
+                            <div class="card card-1">
                                 <div class="card-header bg-danger text-white">
                                     <h5 class="card-title">PROBLÈME</h5>
                                 </div>

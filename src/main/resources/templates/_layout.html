@@ -367,7 +367,9 @@
                         <li><a class="" href="/taches">Liste des taches</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
+                <li class="sub-menu"
+                    th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'', ''MANAGER'')')}"
+                >
                     <a href="javascript:;" class="">
                         <i class="fa fa-user"></i>
                         <span>Manager</span>
@@ -390,7 +392,9 @@
                         <li><a class="" th:href="@{/reports}">Summary Page</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
+                <li class="sub-menu"
+                    th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}"
+                >
                     <a href="javascript:;" class="">
                         <i class="fa fa-key"></i>
                         <span>Admin</span>
