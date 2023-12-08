@@ -6,6 +6,9 @@ import com.sgtpied.sgt.taches.models.Task;
 import com.sgtpied.sgt.taches.models.TaskStatus;
 import com.sgtpied.sgt.taches.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import com.sgtpied.sgt.taches.websocket.MoveTaskRequest;
 
 import java.security.Principal;
 import java.util.Collection;
@@ -28,6 +32,27 @@ public class TaskController {
 
     @Autowired
     private UserService userService;
+
+    private final SimpMessagingTemplate messagingTemplate;
+    @Autowired
+    public TaskController(TaskService taskService, UserService userService, SimpMessagingTemplate messagingTemplate) {
+        this.taskService = taskService;
+        this.userService = userService;
+        this.messagingTemplate = messagingTemplate;
+    }
+
+    @MessageMapping("/moveTask")
+    @SendTo("/topic/taskUpdates")
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
+    public MoveTaskRequest moveTask(MoveTaskRequest moveTaskRequest) {
+        // Process the move task request
+        // Update task status in the backend
+
+        // Broadcast the update to all subscribers
+        messagingTemplate.convertAndSend("/topic/taskUpdates", moveTaskRequest);
+
+        return moveTaskRequest;
+    }
 
     @GetMapping("/taches/tasks")
 

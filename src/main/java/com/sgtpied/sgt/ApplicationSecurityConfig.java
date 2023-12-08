@@ -35,7 +35,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/register", "/resources/**", "/css/**", "/fonts/**", "/img/**", "/js/**").permitAll()
 				.antMatchers("/employee/profile").hasAnyAuthority("ADMIN","EMPLOYEE","MANAGER")
 				.antMatchers("/users/addNew").permitAll()
-
+				.antMatchers("/sgtpied-websocket/**").permitAll()
 				//.antMatchers("/taches/tasks").hasAnyAuthority("EMPLOYEE", "ADMIN")
 				//.antMatchers("/security/user/Edit/**").hasAuthority("ADMIN")
 				.antMatchers("/hr/**").hasAnyAuthority("EMPLOYEE", "ADMIN") // Allow access to EMPLOYEE section

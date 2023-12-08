@@ -177,11 +177,18 @@
                         </a>
 
                         <!-- button faire la tache  -->
-                        <a class="btn btn-default"
-                           href="/taches/taskStatus"
-                           th:if="${#authorization.expression('hasAuthority(''EMPLOYEE'')')}">
+                        <button class="btn btn-default" onclick="moveTask('${task.id}', 'EN_COURS')"
+                                th:if="${#authorization.expression('hasAnyAuthority(''EMPLOYEE'')')}">
                             <i class="fa fa-pencil"></i>Faire la tâche
-                        </a>
+                        </button>
+                        <script>
+                            function moveTask(taskId, newStatus) {
+                                stompClient.send('/app/moveTask', {}, JSON.stringify({
+                                    taskId: taskId,
+                                    newStatus: newStatus
+                                }));
+                            }
+                        </script>
 
 
                     </td>
@@ -200,7 +207,99 @@
 
     </script>
 
+    <script>
+        document.getElementById('assignedUser').addEventListener('change', function () {
+            var selectedUserId = this.value;
+            document.getElementById('hiddenAssignedUserId').value = selectedUserId;
+        });
+    </script>
 
+    <!-- Existing scripts and stylesheets -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.rawgit.com/RubaXa/Sortable/v1.14.0/Sortable.min.js"></script>
+    <script src="https://sockjs.pusher.com/7.0.3/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const statusCards = document.querySelectorAll('.card-body.sortable');
+
+            statusCards.forEach(function (card) {
+                new Sortable(card, {
+                    group: 'status', // Group tasks by status
+                    animation: 150,
+                    onEnd: function (evt) {
+                        const taskId = evt.item.getAttribute('data-task-id');
+                        const newStatus = evt.to.closest('.card').querySelector('.card-title').innerText.trim();
+                        updateTaskStatus(taskId, newStatus);
+                    }
+                });
+
+                card.addEventListener('dragover', function (event) {
+                    event.preventDefault();
+                });
+
+                card.addEventListener('drop', function (event) {
+                    event.preventDefault();
+                    const taskId = event.dataTransfer.getData('text/plain');
+                    const taskCard = document.querySelector('[data-task-id="' + taskId + '"]');
+                    card.querySelector('.card-body.sortable').appendChild(taskCard);
+                    const newStatus = card.closest('.card').querySelector('.card-title').innerText.trim();
+                    updateTaskStatus(taskId, newStatus);
+                });
+            });
+        });
+
+        function updateTaskStatus(taskId, newStatus) {
+            console.log('Updating task status...', taskId, newStatus);
+
+            // Use AJAX or Fetch API to send a request to your Spring Boot backend
+            // Example fetch:
+            /*
+            fetch('/tasks/updateStatus', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'taskId=' + encodeURIComponent(taskId) + '&newStatus=' + encodeURIComponent(newStatus),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Task status updated successfully');
+                    } else {
+                        console.error('Failed to update task status');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating task status:', error);
+                });
+            */
+
+            // Send a WebSocket message
+            stompClient.send("/app/updateTaskStatus", {}, JSON.stringify({
+                taskId: taskId,
+                newStatus: newStatus
+            }));
+        }
+
+    </script>
+
+    <script>
+        function getStatusColor(status) {
+            switch (status) {
+                case 'TODO':
+                    return 'red'; // Set your desired color for 'TODO' status
+                case 'EN_COURS':
+                    return 'yellow'; // Set your desired color for 'EN_COURS' status
+                case 'TERMINÉE':
+                    return 'green'; // Set your desired color for 'TERMINÉE' status
+                case 'PROBLÈME':
+                    return 'purple'; // Set your desired color for 'PROBLÈME' status
+                default:
+                    return 'black'; // Default color for unknown status
+            }
+        }
+    </script>
 
     <!--main content end-->
 </div>

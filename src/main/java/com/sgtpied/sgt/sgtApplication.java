@@ -6,10 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 
 @EnableJpaAuditing(auditorAwareRef="auditorAware")
+@EnableWebSocketMessageBroker
 @SpringBootApplication
-public class sgtApplication {
+public class sgtApplication extends AbstractWebSocketMessageBrokerConfigurer {
 
 
     @Bean

@@ -14,183 +14,83 @@
                 </ol>
             </div>
         </div>
-        <div class="container">
-            <!--Style -->
 
-              <style>
-                  .card-1{
-                     background: none;
-                  }
-                  .card-title{
-                      margin-top: 12px;
-                  }
-              </style>
+        <div class="panel">
 
-            <!--- fin du style  ---->
-            <!-- TaskStatus.html -->
-            <section class="panel">
-                <!-- Container for task status columns and rows -->
-                <div class="container mt-4">
+            <div class="container">
+                <!--Style -->
+                <style>
+                    .panel{
+                            width: 100%;
+                            height: 100vh;
+                            overflow: scroll;
+                            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/Sunset-Over-The-Sea-AI-Generated-4K-Wallpaper-1024x576.png') no-repeat center center fixed;
+                            background-position: center;
+                            background-size: cover;
 
-                    <!-- Status columns for drag-and-drop using Bootstrap grid system -->
-                    <div class="row" style="background-color: #0e2e42 !important;">
-                        <div class="col-md-3">
-                            <div class="card card-1">
-                                <div class="card-header bg-primary text-white">
-                                    <h5 class="card-title">À FAIRE</h5>
-                                </div>
-                                <!-- Display tasks with status 'TODO' -->
-                                <div class="card-body sortable" th:each="task : ${todoTasks}" th:attr="data-task-id=${task.id}">
-                                    <div class="card" draggable="true">
-                                        <div class="card-body">
-                                            <!-- Display only the title with a light background color -->
-                                            <div style="background-color: #f2f2f2; padding: 8px; border-bottom: 1px solid #ddd;">
-                                                <h5 class="card-title">
-                                                    <span th:text="${task.title}"></span>
-                                                </h5>
-                                            </div>
+                    }
+                    .page-header{
+                        color: #fff;
+                        font: bold;
+                    }
+                    .task h4 {
+                        background-color: #3498db;
+                        color: #fff;
+                        padding: 8px;
+                        margin-bottom: 5px;
+                    }
 
-                                            <!-- Display the description -->
-                                            <p class="card-text task-details">
-                                                <span th:text="${task.description}"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                </style>
+                <!--- fin du style  ---->
+                <!-- TaskStatus.html -->
+                <div class="lanes">
+                    <!-- À FAIRE section -->
+                    <div class="swim-lane" id="todo-lane">
+                        <h3 class="heading">À FAIRE </h3>
+                        <div th:each="task : ${todoTasks}">
+                            <div class="task" draggable="true">
+                                <h4 th:text="${task.title}"></h4>
+                                <p th:text="${task.description}"></p>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Repeat similar structure for other status columns and rows -->
-                        <div class="col-md-3 ">
-                            <div class="card card-1">
-                                <div class="card-header bg-warning">
-                                    <h5 class="card-title">EN COURS</h5>
-                                </div>
-                                <div class="card-body sortable" th:each="task : ${inProgressTasks}" th:attr="data-task-id=${task.id}">
-                                    <div class="card" draggable="true">
-                                        <div class="card-body">
-                                            <div style="background-color: #f2f2f2; padding: 8px; border-bottom: 1px solid #ddd;">
-                                                <h5 class="card-title">
-                                                    <span th:text="${task.title}"></span>
-                                                </h5>
-                                            </div>
-                                            <p class="card-text task-details">
-                                                <span th:text="${task.description}"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                    <!-- EN COURS section -->
+                    <div class="swim-lane" id="in-progress-lane">
+                        <h3 class="heading">EN COURS</h3>
+                        <div th:each="task : ${inProgressTasks}">
+                            <div class="task" draggable="true">
+                                <h4 th:text="${task.title}"></h4>
+                                <p th:text="${task.description}"></p>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-md-3 ">
-                            <div class="card card-1">
-                                <div class="card-header bg-success text-white">
-                                    <h5 class="card-title">TERMINÉE</h5>
-                                </div>
-                                <div class="card-body sortable" th:each="task : ${doneTasks}" th:attr="data-task-id=${task.id}">
-                                    <div class="card" draggable="true">
-                                        <div class="card-body">
-                                            <div style="background-color: #f2f2f2; padding: 8px; border-bottom: 1px solid #ddd;">
-                                                <h5 class="card-title">
-                                                    <span th:text="${task.title}"></span>
-                                                </h5>
-                                            </div>
-                                            <p class="card-text task-details">
-                                                <span th:text="${task.description}"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                    <!-- TERMINÉE section -->
+                    <div class="swim-lane" id="done-lane">
+                        <h3 class="heading">TERMINÉE</h3>
+                        <div th:each="task : ${doneTasks}">
+                            <div class="task" draggable="true">
+                                <h4 th:text="${task.title}"></h4>
+                                <p th:text="${task.description}"></p>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-md-3">
-                            <div class="card card-1">
-                                <div class="card-header bg-danger text-white">
-                                    <h5 class="card-title">PROBLÈME</h5>
-                                </div>
-                                <div class="card-body sortable" th:each="task : ${issueTasks}" th:attr="data-task-id=${task.id}">
-                                    <div class="card" draggable="true">
-                                        <div class="card-body">
-                                            <div style="background-color: #f2f2f2; padding: 8px; border-bottom: 1px solid #ddd;">
-                                                <h5 class="card-title">
-                                                    <span th:text="${task.title}"></span>
-                                                </h5>
-                                            </div>
-                                            <p class="card-text task-details">
-                                                <span th:text="${task.description}"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                    <!-- PROBLÈME section -->
+                    <div class="swim-lane" id="issue-lane">
+                        <h3 class="heading">PROBLÈME</h3>
+                        <div th:each="task : ${issueTasks}">
+                            <div class="task" draggable="true">
+                                <h4 th:text="${task.title}"></h4>
+                                <p th:text="${task.description}"></p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     </section>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdn.rawgit.com/RubaXa/Sortable/v1.14.0/Sortable.min.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const statusCards = document.querySelectorAll('.card-body.sortable');
-
-        statusCards.forEach(function (card) {
-            new Sortable(card, {
-                group: 'status', // Group tasks by status
-                animation: 150,
-                onEnd: function (evt) {
-                    const taskId = evt.item.getAttribute('data-task-id');
-                    const newStatus = evt.to.closest('.card').querySelector('.card-header').innerText.trim();
-                    updateTaskStatus(taskId, newStatus);
-                }
-            });
-
-            card.addEventListener('dragover', function (event) {
-                event.preventDefault();
-            });
-
-            card.addEventListener('drop', function (event) {
-                event.preventDefault();
-                const taskId = event.dataTransfer.getData('text/plain');
-                const taskCard = document.querySelector('[data-task-id="' + taskId + '"]');
-                card.appendChild(taskCard);
-                const newStatus = card.closest('.card').querySelector('.card-header').innerText.trim();
-                updateTaskStatus(taskId, newStatus);
-            });
-        });
-    });
-
-    function updateTaskStatus(taskId, newStatus) {
-        console.log('Updating task status...', taskId, newStatus);
-        // Use AJAX or Fetch API to send a request to your Spring Boot backend
-        // Example fetch:
-        /*
-        fetch('/tasks/updateStatus', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: 'taskId=' + encodeURIComponent(taskId) + '&newStatus=' + encodeURIComponent(newStatus),
-        })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Task status updated successfully');
-                } else {
-                    console.error('Failed to update task status');
-                }
-            })
-            .catch(error => {
-                console.error('Error updating task status:', error);
-            });
-        */
-    }
-</script>
-
 </body>
 </html>
